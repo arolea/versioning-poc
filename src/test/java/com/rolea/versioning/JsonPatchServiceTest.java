@@ -51,15 +51,18 @@ class JsonPatchServiceTest {
         assertThat(studentV1).isEqualTo(backwardPatchStudent);
     }
 
+    @SneakyThrows
     private Student getStudentV1() {
-        return Student.builder().id(1L).name("Name v1")
-                .courses(new TreeSet<>(Set.of(
+        Student studentV1 = Student.builder().id(1L).name("Name v1")
+                .courses(Set.of(
                         Course.builder().id(1L).name("First course").description("Description for first course v1")
                                 .tags(List.of("t1", "t2", "t3")).build(),
                         Course.builder().id(2L).name("Second course").description("Description for second course v1")
                                 .tags(List.of("t1", "t2")).build()
-                ))).grades(Map.of(1L, 7D, 2L, 8.5D))
+                )).grades(Map.of(1L, 7D, 2L, 8.5D))
                 .build();
+        studentV1 = objectMapper.readValue(objectMapper.writeValueAsString(studentV1), Student.class);
+        return studentV1;
     }
     
     @SneakyThrows
@@ -78,6 +81,7 @@ class JsonPatchServiceTest {
         );
         studentV2.getGrades().put(1L, 9D);
         studentV2.getGrades().put(3L, 8D);
+        studentV2 = objectMapper.readValue(objectMapper.writeValueAsString(studentV2), Student.class);
         return studentV2;
     }
     
@@ -88,6 +92,7 @@ class JsonPatchServiceTest {
         studentV3.getGrades().put(1L, 10D);
         studentV3.getGrades().put(2L, 10D);
         studentV3.getGrades().put(3L, 10D);
+        studentV3 = objectMapper.readValue(objectMapper.writeValueAsString(studentV3), Student.class);
         return studentV3;
     }
 
