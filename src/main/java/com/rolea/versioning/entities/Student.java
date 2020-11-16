@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Student implements Comparable<Student> {
+public class Student {
 
     private Long id;
     private String name;
@@ -21,10 +21,5 @@ public class Student implements Comparable<Student> {
     private Map<Long, Double> grades;
 
     private String version;
-
-    @Override
-    public int compareTo(Student student) {
-        return (int)(this.id - student.getId());
-    }
 
 }

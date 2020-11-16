@@ -49,12 +49,12 @@ public class StudentVersioningServiceTest {
     @SneakyThrows
     private Student getStudentV1() {
         Student studentV1 = Student.builder().id(1L).name("Name v1").version("v1")
-                .courses(new TreeSet<>(Set.of(
+                .courses(Set.of(
                         Course.builder().id(1L).name("First course").description("Description for first course v1")
                                 .tags(List.of("t1", "t2", "t3")).build(),
                         Course.builder().id(2L).name("Second course").description("Description for second course v1")
                                 .tags(List.of("t1", "t2")).build()
-                ))).grades(Map.of(1L, 7D, 2L, 8.5D))
+                )).grades(Map.of(1L, 7D, 2L, 8.5D))
                 .build();
         studentV1 = objectMapper.readValue(objectMapper.writeValueAsString(studentV1), Student.class);
         return studentV1;

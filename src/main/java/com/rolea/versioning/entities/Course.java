@@ -11,17 +11,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Course implements Comparable<Course>{
+public class Course {
 
     private Long id;
     private String name;
     private String description;
 
     private List<String> tags;
-
-    @Override
-    public int compareTo(Course course) {
-        return (int)(this.id - course.getId());
-    }
 
 }
